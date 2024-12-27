@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
+import logo from "@/public/logo.png"
+import Image from "next/image"
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -24,11 +27,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <div className="py-[16px] px-[64px] height-[100vh] flex flex-col">
+          <header className="flex justify-between items-center">
+            <a className="flex items-center font-bold gap-[8px]" href="/">
+              <Image
+                src={logo}
+                alt="Logo"
+                className="w-[32px] h-[32px]" />
+              <span>Lama AI</span>
+            </a>
+            <div className="">User</div>
+          </header>
+          <main className="bg-aqua">
+            {children}
+          </main>
+        </div>
       </body>
     </html>
   );
